@@ -46,33 +46,34 @@ if (isset($_POST["submit"])) {
 <div class="container body" style="margin-top:150px">
 
 
-    <center>
-        <font size="6">Halaman Registrasi</font>
-    </center>
-<br>
+<h2 style="margin-left: 520px;">HALAMAN REGISTRASI</h2>
+
+
+
+    <br>
 
     <form action="" method="post">
         <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">USERNAME</label>
-            <div class="col-md-6 col-sm-6 ">
-                <input type="text" name="username" class="form-control" size="5" required>
+            <label class="col-form-label col-md-4 col-sm-4 label-align">USERNAME</label>
+            <div class="col-md-3 col-sm-3 label-align">
+                <input type="text" name="username" class="form-control" required>
             </div>
         </div>
         <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">PASSWORD</label>
-            <div class="col-md-6 col-sm-6">
+            <label class="col-form-label col-md-4 col-sm-4 label-align">PASSWORD</label>
+            <div class="col-md-3 col-sm-3">
                 <input type="password" name="password" class="form-control" required>
             </div>
         </div>
         <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">KONFIRMASI PASSWORD</label>
-            <div class="col-md-6 col-sm-6">
+            <label class="col-form-label col-md-4 col-sm-4 label-align">KONFIRMASI PASSWORD</label>
+            <div class="col-md-3 col-sm-3">
                 <input type="password" name="password2" class="form-control" required>
             </div>
         </div>
 </div>
 <br>
-<div class="col-md-6 col-sm-6 offset-md-3">
+<div class="col-md-6 col-sm-6 offset-md-4">
     <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
     <a href="index.php?page=tampil_mhs" class="btn btn-warning">Kembali</a>
 </div>

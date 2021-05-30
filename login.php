@@ -85,11 +85,7 @@ if (isset($_POST["login"])) {
 
 <body>
     <div class="container body" style="margin-top:150px">
-
-        <center>
-            <h1>Halaman Login</h1>
-        </center>
-
+<h1 style="margin-left: 520px;">LOGIN</h1>
 
         <?php if (isset($error)) : ?>
             <center>
@@ -99,30 +95,30 @@ if (isset($_POST["login"])) {
 
         <form action="" method="post">
             <div class="item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Username</label>
-                <div class="col-md-6 col-sm-6 ">
+                <label class="col-form-label col-md-4 col-sm-4 label-align">Username</label>
+                <div class="col-md-3 col-sm-3 ">
                     <input type="text" name="username" class="form-control" size="4" required>
                 </div>
             </div>
             <div class="item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Password</label>
-                <div class="col-md-6 col-sm-6">
+                <label class="col-form-label col-md-4 col-sm-4 label-align">Password</label>
+                <div class="col-md-3 col-sm-3">
                     <input type="password" name="password" class="form-control" required>
                 </div>
             </div>
             <div class="item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Remember Me</label>
-                <div class="col-md-1 col-sm-1">
+                <label class="col-form-label col-md-4 col-sm-4 label-align">Remember Me</label>
+                <div class="col-md-1">
                     <input type="checkbox" name="remember" class="form-control" required>
                 </div>
             </div>
             <br>
             <div class="item form-group">
-                <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="col-md-6 col-sm-6 offset-md-4">
                     <input type="submit" name="login" class="btn btn-primary" value="login">
-                    <br><br>
+                    <br>
                     <a href="registrasi.php">
-                        <h1> Silahkan registrasi terlebih dahulu</h1>
+                        <h2> Silahkan registrasi terlebih dahulu</h2>
                     </a>
                 </div>
         </form>
