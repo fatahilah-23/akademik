@@ -54,11 +54,11 @@ if (!isset($_SESSION["login"])) {
           <!-- menu profile quick info -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="assets/images/fatahilah.jpg" alt="..." class="img-circle profile_img">
+              <img src="assets/images/logo poltek.png" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>Jangki Fatahilah</h2>
+              <h2>Politeknik Gajah Tunggal</h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -88,6 +88,24 @@ if (!isset($_SESSION["login"])) {
                   <ul class="nav child_menu">
                     <li><a href="index.php?page=tampil_staff">Tampil Data</a></li>
                     <li><a href="index.php?page=tambah_staff">Tambah Data</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-desktop"></i> Data Nilai <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="index.php?page=tampil_data">Tampil Data</a></li>
+                    <li><a href="index.php?page=tambah_data">Tambah Data</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-desktop"></i> Data Mata Kuliah <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="index.php?page=tampil_matakuliah">Tampil Data</a></li>
+                    <li><a href="index.php?page=tambah_matakuliah">Tambah Data</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-desktop"></i> Data Lengkap <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="index.php?page=tampil_nilai">Tampil Data</a></li>
+                    <li><a href="index.php?page=tambah_nilai">Tambah Data</a></li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-gear"></i> Settings <span class="fa fa-chevron-down"></span></a>
@@ -130,7 +148,7 @@ if (!isset($_SESSION["login"])) {
             <ul class=" navbar-right">
               <li class="nav-item dropdown open">
                 <a href="#" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                  <img src="assets/images/fatahilah.jpg" alt="">Jangki Fatahilah
+                  <img src="assets/images/logo poltek.png" alt="">Politeknik Gajah Tunggal
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#"> Profile</a>
@@ -194,6 +212,46 @@ if (!isset($_SESSION["login"])) {
             # code...
             include 'tambah_staff.php';
             break;
+          case 'tampil_nilai':
+            # code...
+            include 'nilaiview.php';
+            break;
+          case 'tambah_nilai':
+            # code...
+            include 'tambah_nilai.php';
+            break;
+          case 'tampil_data':
+            # code...
+            include 'tampil_data.php';
+            break;
+          case 'tambah_data':
+            # code...
+            include 'tambah_data.php';
+            break;
+          case 'edit_data_nilai':
+            # code...
+            include 'edit_data_nilai.php';
+            break;
+          case 'delete_data_nilai':
+            # code...
+            include 'delete_data_nilai.php';
+            break;
+          case 'tampil_matakuliah':
+            # code...
+            include 'tampil_matakuliah.php';
+            break;
+          case 'tambah_matakuliah':
+            # code...
+            include 'tambah_matakuliah.php';
+            break;
+          case 'edit_matakuliah':
+            # code...
+            include 'edit_matakuliah.php';
+            break;
+          case 'delete_matakuliah':
+            # code...
+            include 'delete_matakuliah.php';
+            break;
           default:
             include 'home.php';
             break;
@@ -205,7 +263,7 @@ if (!isset($_SESSION["login"])) {
       <!-- footer content -->
       <footer>
         <div class="pull-right">
-          Copyright @ 2020 Aplikasi Akademik : Jangki Fatahilah
+          Copyright @ 2020 Aplikasi Akademik : PoltekGT
         </div>
         <div class="clearfix"></div>
       </footer>
