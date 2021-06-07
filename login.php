@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require 'config.php';
@@ -85,7 +86,7 @@ if (isset($_POST["login"])) {
 
 <body>
     <div class="container body" style="margin-top:150px">
-<h1 style="margin-left: 520px;">LOGIN</h1>
+        <h1 style="margin-left: 520px;">LOGIN</h1>
 
         <?php if (isset($error)) : ?>
             <center>

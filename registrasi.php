@@ -46,7 +46,7 @@ if (isset($_POST["submit"])) {
 <div class="container body" style="margin-top:150px">
 
 
-<h2 style="margin-left: 520px;">HALAMAN REGISTRASI</h2>
+    <h2 style="margin-left: 520px;">HALAMAN REGISTRASI</h2>
 
 
 
