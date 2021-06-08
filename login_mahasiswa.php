@@ -5,6 +5,7 @@ require 'config.php';
 
 if (isset($_SESSION["login"])) {
     header("Location: login_mahasiswa.php");
+    header("Location: login_admin.php");
     exit;
 }
 
@@ -20,8 +21,25 @@ if (isset($_POST["login"])) {
     if (mysqli_num_rows($result) === 1) {
 
         $_SESSION["login"] = true;
-        header("Location: index.php");
-        exit;
+        header("Location: index.php?page=tampil_nilai");
+    }
+}
+
+$error = true;
+
+
+if (isset($_POST["masuk"])) {
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($koneksi, "SELECT * FROM tb_admin WHERE username = '$username' && password = '$password'");
+
+    // cek nim dan nama 
+    if (mysqli_num_rows($result) === 1) {
+
+        $_SESSION["login"] = true;
+        header("Location: index.php?");
     }
 }
 
@@ -35,7 +53,7 @@ $error = true;
 <html lang="en">
 
 <head>
-    <title>Login Mahasiswa</title>
+    <title>Login Mahasiswa && Login Admin</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -63,6 +81,7 @@ $error = true;
 </head>
 
 <body>
+    <!-- Login Mahasiswa -->
     <form action="" method="post">
         <div class="limiter">
             <div class="container-login100" style="background-image: url('assets/images/bg-01.jpg');">
@@ -74,14 +93,14 @@ $error = true;
 
                         <div class="wrap-input100 validate-input m-b-23" data-validate="nim is reqired">
                             <span class="label-input100">Nim</span>
-                            <input class="input100" type="text" name="nim" placeholder="Type your Nim">
+                            <input class="input100" type="text" name="nim" placeholder="Type your Nim" class="form-control" required>
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
                             <span class="label-input100">Nama Mahasiswa</span>
-                            <input class="input100" type="text" name="nama_mahasiswa" placeholder="Type your Nama Mahasiswa>
-						 <span class=" focus-input100" data-symbol="&#xf206;"></span>
+                            <input class="input100" type="text" name="nama_mahasiswa" placeholder="Type your Name" class="form-control" required>
+                            <span class=" focus-input100" data-symbol="&#xf206;"></span>
                         </div>
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
@@ -102,7 +121,47 @@ $error = true;
     </div>
     </div>
     </div>
+<!-- akhir login mahasiswa -->
+
+<!-- login admin -->
     </form>
+    <form action="" method="post">
+        <div class="limiter">
+            <div class="container-login100" style="background-image: url('assets/images/bg-01.jpg');">
+                <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-title p-b-49">
+                            Login Admin
+                        </span>
+
+                        <div class="wrap-input100 validate-input m-b-23" data-validate="nim is reqired">
+                            <span class="label-input100">Username</span>
+                            <input class="input100" type="text" name="username" placeholder="Type your Username" class="form-control" required>
+                            <span class="focus-input100" data-symbol="&#xf206;"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+                            <span class="label-input100">Password</span>
+                            <input class="input100" type="password" name="password" placeholder="Type your Password" class="form-control" required>
+                            <span class=" focus-input100" data-symbol="&#xf206;"></span>
+                        </div>
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" name="masuk">
+                                    Masuk
+                                </button>
+                            </div>
+                        </div><br>
+                </div>
+    </form>
+    </div>
+    </div>
+    </div>
+
+    </form>
+
+<!-- akhir login admin -->
 
     <div id="dropDownSelect1"></div>
 

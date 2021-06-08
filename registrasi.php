@@ -61,14 +61,14 @@ if (isset($_POST["submit"])) {
 
                         <div class="wrap-input100 validate-input m-b-23" data-validate="nim is reauired">
                             <span class="label-input100">Nim</span>
-                            <input class="input100" type="text" name="nim" placeholder="Type your Nim">
+                            <input class="input100" type="text" name="nim" placeholder="Type your Nim" class="form-control" required>
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input m-b-23" data-validate="nama_mahasiswa is required">
                             <span class="label-input100">Nama Mahasiswa</span>
-                            <input class="input100" type="text" name="nama_mahasiswa" placeholder="Type your Nama Mahasiswa>
-						 <span class=" focus-input100" data-symbol="&#xf206;"></span>
+                            <input class="input100" type="text" name="nama_mahasiswa" placeholder="Type your Nama Mahasiswa" class="form-control" required>
+                            <span class=" focus-input100" data-symbol="&#xf206;"></span>
                         </div>
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
@@ -89,6 +89,7 @@ if (isset($_POST["submit"])) {
             </div>
         </div>
     </form>
+
 
     <div id="dropDownSelect1"></div>
 
