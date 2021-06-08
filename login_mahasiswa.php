@@ -1,19 +1,32 @@
 <?php
+session_start();
 require 'config.php';
 
 
-if (isset($_POST["submit"])) {
+if (isset($_SESSION["login"])) {
+    header("Location: login_mahasiswa.php");
+    exit;
+}
 
-    if (registrasi($_POST) > 0) {
-        echo "<script>
-				alert('user baru berhasil ditambahkan!');
-			  </script>";
-        header("Location: login_mahasiswa.php");
+
+if (isset($_POST["login"])) {
+
+    $nim = $_POST["nim"];
+    $nama_mahasiswa = $_POST["nama_mahasiswa"];
+
+    $result = mysqli_query($koneksi, "SELECT * FROM user WHERE nim = '$nim' && nama_mahasiswa = '$nama_mahasiswa'");
+
+    // cek nim dan nama 
+    if (mysqli_num_rows($result) === 1) {
+
+        $_SESSION["login"] = true;
+        header("Location: index.php");
         exit;
-    } else {
-        echo mysqli_error($koneksi);
     }
 }
+
+$error = true;
+
 
 ?>
 
@@ -56,16 +69,16 @@ if (isset($_POST["submit"])) {
                 <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
                     <form class="login100-form validate-form">
                         <span class="login100-form-title p-b-49">
-                            registrasi
+                            Login Mahasiswa
                         </span>
 
-                        <div class="wrap-input100 validate-input m-b-23" data-validate="nim is reauired">
+                        <div class="wrap-input100 validate-input m-b-23" data-validate="nim is reqired">
                             <span class="label-input100">Nim</span>
                             <input class="input100" type="text" name="nim" placeholder="Type your Nim">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
                         </div>
 
-                        <div class="wrap-input100 validate-input m-b-23" data-validate="nama_mahasiswa is required">
+                        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
                             <span class="label-input100">Nama Mahasiswa</span>
                             <input class="input100" type="text" name="nama_mahasiswa" placeholder="Type your Nama Mahasiswa>
 						 <span class=" focus-input100" data-symbol="&#xf206;"></span>
@@ -73,21 +86,22 @@ if (isset($_POST["submit"])) {
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn" name="submit" value="simpan">
-                                    registrasi
+                                <button class="login100-form-btn" name="login">
+                                    Login
                                 </button>
                             </div>
                         </div><br>
                         <div class="container-login100-form-btn">
-                            <div class="wrap-login100-form-btn">
-                                <div class="login100-form-bgbtn"></div>
-                                <a href="login_mahasiswa.php" class="login100-form-btn">Kembali</a>
-                            </div>
+                            <a href="registrasi.php">
+                                <h6> Silahkan registrasi terlebih dahulu</h6>
+                            </a>
                         </div>
-                    </form>
+
                 </div>
-            </div>
-        </div>
+    </form>
+    </div>
+    </div>
+    </div>
     </form>
 
     <div id="dropDownSelect1"></div>
@@ -108,5 +122,7 @@ if (isset($_POST["submit"])) {
     <script src="assets/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="assets/js/main.js"></script>
+
+</body>
 
 </html>
