@@ -1,40 +1,8 @@
-<?php
-session_start();
-require 'config.php';
-
-if (isset($_SESSION["login"])) {
-    header("Location: login_admin.php");
-
-    exit;
-}
-
-if (isset($_POST["login"])) {
-
-    $nim = $_POST["nim"];
-    $nama_mahasiswa = $_POST["nama_mahasiswa"];
-
-    $result = mysqli_query($koneksi, "SELECT * FROM user WHERE nim = '$nim' && nama_mahasiswa = '$nama_mahasiswa'");
-
-    // cek nim dan nama 
-    if (mysqli_num_rows($result) === 1) {
-
-        $_SESSION["login"] = true;
-        header("Location: tampilan_nilai.php");
-    }
-}
-
-$error = true;
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Login Mahasiswa</title>
+    <title>Tampilan Nilai</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -62,52 +30,96 @@ $error = true;
 </head>
 
 <body>
-    <!-- Login Mahasiswa -->
-    <form action="" method="post">
-        <div class="limiter">
-            <div class="container-login100" style="background-image: url('assets/images/bg-01.jpg');">
-                <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                    <form class="login100-form validate-form">
-                        <span class="login100-form-title p-b-49">
-                            Login Mahasiswa
-                        </span>
 
-                        <div class="wrap-input100 validate-input m-b-23" data-validate="nim is reqired">
-                            <span class="label-input100">Nim</span>
-                            <input class="input100" type="text" name="nim" placeholder="Type your Nim" class="form-control" required>
-                            <span class="focus-input100" data-symbol="&#xf206;"></span>
-                        </div>
+    <div class="container-100" style="background-image: url('assets/images/bg-01.jpg');">
+        <?php
+        include "config.php";
+        ?>
+        <div class="container-100">
+            <center>
+                <font size="6">Data Lengkap</font>
+            </center>
+            <div>
+                <form action="" method="post">
+                 <input type="submit" name="submit" class=" btn btn-dark right" value="cari data">
+                
+                </form>
 
-                        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-                            <span class="label-input100">Nama Mahasiswa</span>
-                            <input class="input100" type="text" name="nama_mahasiswa" placeholder="Type your Name" class="form-control" required>
-                            <span class=" focus-input100" data-symbol="&#xf206;"></span>
-                        </div>
-                        <div class="container-login100-form-btn">
-                            <div class="wrap-login100-form-btn">
-                                <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn" name="login">
-                                    Login
-                                </button>
-                            </div>
-                        </div><br>
-                        <div class="container-login100-form-btn">
-                            <a href="registrasi.php">
-                                <h6> Silahkan registrasi terlebih dahulu</h6>
-                            </a>
-                        </div>
 
-                </div>
-                <div class="wrap-login100-form-btn">
-                    <div class="login100-form-bgbtn"></div>
-                    <a href="login_admin.php" class="login100-form-btn">Login sebagai Admin</a>
-                </div>
-    </form>
+            </div>
+
+            <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>NAMA MAHASISWA</th>
+                            <th>NIM</th>
+                            <th>JURUSAN</th>
+                            <th>SEMESTER</th>
+                            <th>MATA KULIAH</th>
+                            <th>SKS</th>
+                            <th>NILAI</th>
+                            <th>NILAI MUTU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        //query ke database SELECT tabel mahasiswa urut berdasarkan id yang paling besar
+                        $sql = mysqli_query($koneksi, "SELECT a.Nim, a.Nama_Mhs,a.Program_Studi, c.nama_mk,b.nilai,
+                         c.sks,c.semester FROM mahasiswa AS a JOIN nilai AS b
+                        ON a.Nim=b.Nim JOIN matakuliah AS c 
+                        ON c.kode_mk=b.kode_mk")
+                            or die(mysqli_error($koneksi));
+                        //jika query diatas menghasilkan nilai > 0 maka menjalankan script di bawah if...
+                        if (mysqli_num_rows($sql) > 0) {
+                            //membuat variabel $no untuk menyimpan nomor urut
+                            $no = 1;
+                            //melakukan perulangan while dengan dari dari query $sql
+                            while ($data = mysqli_fetch_assoc($sql)) {
+                                if ($data['nilai'] > 80) {
+                                    $hasil = 'A';
+                                } else if ($data['nilai'] >= 72) {
+                                    $hasil = 'B';
+                                } else if ($data['nilai'] >= 60) {
+                                    $hasil = 'C';
+                                } else if ($data['nilai'] >= 50) {
+                                    $hasil = 'D';
+                                } else {
+                                    $hasil = 'E';
+                                }
+                                echo "<tr>";
+                                //menampilkan data perulangan
+                                echo '
+<tr>
+<td>' . $data['Nama_Mhs'] . '</td>
+<td>' . $data['Nim'] . '</td>
+<td>' . $data['Program_Studi'] . '</td>
+<td>' . $data['semester'] . '</td>
+<td>' . $data['nama_mk'] . '</td>
+<td>' . $data['sks'] . '</td>
+<td>' . $data['nilai'] . '</td>
+<td>' . $hasil . '</td>
+</tr>
+';
+                                $no++;
+                            }
+                            //jika query menghasilkan nilai 0
+                        } else {
+                            echo '
+<tr>
+<td colspan ="6">Tidak ada data.</td>
+</tr>
+';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     </div>
     </div>
-    <!-- akhir login mahasiswa -->
-
 
     <div id="dropDownSelect1"></div>
 
